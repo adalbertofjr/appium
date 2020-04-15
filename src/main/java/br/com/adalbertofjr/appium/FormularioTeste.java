@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import br.com.adalbertofjr.appium.core.DriverFactory;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -23,28 +24,17 @@ public class FormularioTeste {
 	
 	@Before
 	public void inicializarAppium() throws MalformedURLException {
-		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-		desiredCapabilities.setCapability("platformName", "Android");
-		desiredCapabilities.setCapability("deviceName", "emulator-5554");
-		desiredCapabilities.setCapability("automationName", "uiautomator2");
-		desiredCapabilities.setCapability(MobileCapabilityType.APP, "/Users/adalbertofernandesjunior/eclipse-workspace/CursoAppium/src/main/resources/ct_appium.apk" );
-		
-		
-		URL remoteUrl = new URL("http://localhost:4723/wd/hub");
-		
-		driver = new AndroidDriver(remoteUrl, desiredCapabilities);
+		driver = DriverFactory.getDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		//Selecionar Formulário
+		 driver.findElement(By.xpath("//android.widget.TextView[@text='Formulário']")).click();
 	}
 
 	
 	@Test
 	public void devePreencherCampoNome() throws MalformedURLException {
 	    
-	    //Selecionar Formulário
-	     List<MobileElement> findElements = driver.findElements(By.className("android.widget.TextView"));
-	    
-	     findElements.get(1).click();
-	   
 	    //Escrever o nome
 	     MobileElement nomeElement = driver.findElement(MobileBy.AccessibilityId("nome"));
 	     nomeElement.sendKeys("Adalberto");
@@ -61,7 +51,7 @@ public class FormularioTeste {
 	   
 	    //Selecionar Formulário
 //	     List<MobileElement> findElements = driver.findElements(By.className("android.widget.TextView"));
-	    driver.findElement(By.xpath("//android.widget.TextView[@text='Formulário']")).click();
+	    //driver.findElement(By.xpath("//android.widget.TextView[@text='Formulário']")).click();
 	    
 	    //clicar no combo
 	    driver.findElement(MobileBy.AccessibilityId("console")).click();
@@ -77,7 +67,7 @@ public class FormularioTeste {
 
 	@After
 	public void tearDown() {
-		driver.quit();
+		DriverFactory.killDriver();
 	}
 
 }
