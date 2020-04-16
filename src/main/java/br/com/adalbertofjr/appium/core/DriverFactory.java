@@ -31,7 +31,7 @@ public class DriverFactory {
 		
 		URL remoteUrl;
 		try {
-			remoteUrl = new URL("http://localhost:4723/wd/hub");
+			remoteUrl = new URL("http://127.0.0.1:4723/wd/hub");
 			driver = new AndroidDriver(remoteUrl, desiredCapabilities);
 		
 		} catch (MalformedURLException e) {
