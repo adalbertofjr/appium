@@ -4,7 +4,7 @@ import static br.com.adalbertofjr.appium.core.DriverFactory.getDriver;
 
 import org.openqa.selenium.By;
 
-public class DSL {
+public class BasePages {
 
 	public void escrever(By by, String texto) {
 		getDriver().findElement(by).sendKeys(texto);
@@ -22,5 +22,4 @@ public class DSL {
 		getDriver().findElement(by).click();
 		clicarPorTexto(text);
 	}
-
 }

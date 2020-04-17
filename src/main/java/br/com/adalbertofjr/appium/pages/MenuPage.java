@@ -1,16 +1,11 @@
 package br.com.adalbertofjr.appium.pages;
 
-import org.openqa.selenium.By;
+import br.com.adalbertofjr.appium.core.BasePages;
 
-import br.com.adalbertofjr.appium.core.DSL;
-import br.com.adalbertofjr.appium.core.DriverFactory;
-
-public class MenuPage {
-
-	private DSL dsl = new DSL();
+public class MenuPage extends BasePages {
 
 	public void acessarFormulario() {
 		// DriverFactory.getDriver().findElement(By.xpath("//android.widget.TextView[@text='Formulário']")).click();
-		dsl.clicarPorTexto("Formulário");
+		clicarPorTexto("Formulário");
 	}
 }

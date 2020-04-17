@@ -2,18 +2,18 @@ package br.com.adalbertofjr.appium.test;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import br.com.adalbertofjr.appium.core.BaseTest;
 import br.com.adalbertofjr.appium.core.DriverFactory;
 import br.com.adalbertofjr.appium.pages.FormularioPage;
 import br.com.adalbertofjr.appium.pages.MenuPage;
 import io.appium.java_client.MobileBy;
 
-public class FormularioTeste {
+public class FormularioTeste extends BaseTest {
 
 	private MenuPage menu = new MenuPage();
 	private FormularioPage page = new FormularioPage();
@@ -38,16 +38,11 @@ public class FormularioTeste {
 	@Test
 	public void deveInteragirCombo() {
 		// clicar no combo
-		page.selectSpinner(MobileBy.AccessibilityId("console"), "Nintendo Switch");
+		page.selecionarConsole(MobileBy.AccessibilityId("console"), "Nintendo Switch");
 
 		// verificar opcao selecionada
 		Assert.assertEquals("Nintendo Switch",
 				page.obterTexto(By.xpath("//android.widget.Spinner/android.widget.TextView")));
-	}
-
-	@After
-	public void tearDown() {
-		DriverFactory.killDriver();
 	}
 
 }
